@@ -4,6 +4,7 @@
  - 암호화(bycrptjs)
  - live chat(gateway , socket)
  - MariaDB 연결
+ - 채팅방 log 기록
 
 ## Description
 

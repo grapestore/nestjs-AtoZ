@@ -1,15 +1,14 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Get,
   Post,
   Query,
   Redirect,
-  UseFilters,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
-import UserDto from './dtos/user.dto';
-import { HttpExceptionFilter } from './http-excetion.filter';
+import { UserDto } from './dtos/user.dto';
 import { MoardService } from './moard.service';
 
 @Controller('moard')
@@ -26,9 +25,9 @@ export class MoardController {
   }
 
   @Post('/test-exception')
-  @UseFilters(new HttpExceptionFilter())
+  @UsePipes(new ValidationPipe({ transform: true }))
   occurException(@Body() req: UserDto) {
-    if (req.userId === undefined) throw new BadRequestException();
-    else return req;
+    console.log(req);
+    return req;
   }
 }

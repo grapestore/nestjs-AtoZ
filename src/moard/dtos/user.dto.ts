@@ -1,3 +1,3 @@
-export default class UserDto {
-  readonly userId: string;
+export class UserDto {
+  userId: string;
 }

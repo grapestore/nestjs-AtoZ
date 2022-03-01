@@ -5,10 +5,13 @@ import {
   Post,
   Query,
   Redirect,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { UserDto } from './dtos/user.dto';
+import { User } from 'src/decorators/user.decorator';
+import { LocalAuthGuard } from 'src/guards/authLocal.guard';
+import UserDto from './dtos/user.dto';
 import { MoardService } from './moard.service';
 
 @Controller('moard')
@@ -29,5 +32,11 @@ export class MoardController {
   occurException(@Body() req: UserDto) {
     console.log(req);
     return req;
+  }
+
+  @UseGuards(LocalAuthGuard)
+  @Post()
+  getUser(@User() user: any) {
+    console.log(user);
   }
 }
